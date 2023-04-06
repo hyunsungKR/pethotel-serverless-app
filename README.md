@@ -40,9 +40,9 @@
 <img width="100%" height="45%" src="https://user-images.githubusercontent.com/120348500/226835929-3c036d19-b57f-4c2d-b7bc-698bc86b531a.png">
 
 
-## 📌 개발 기술서
+# 📌 개발 기술서
 
-[개발기술서 확인하기(PDF)](https://github.com/hyunsungKR/pethotel-serverless-app/files/11167012/default.pdf)
+## [개발기술서 확인하기(PDF)](https://github.com/hyunsungKR/pethotel-serverless-app/files/11167012/default.pdf)
 
 
 

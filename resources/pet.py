@@ -85,7 +85,8 @@ class PetListResource(Resource) :
 
             query = '''select id,userId,petImgUrl,name,classification,species,age,weight,gender
                     from pet
-                    where userId=%s;'''
+                    where userId=%s
+                    ORDER BY createdAt ASC;'''
 
             ## 중요!!!! select 문은 
             ## 커서를 가져올 때 dictionary = True로 해준다

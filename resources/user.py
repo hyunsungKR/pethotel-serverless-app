@@ -403,6 +403,8 @@ class UserInfoResource(Resource) :
         try :
             connection = get_connection()
 
+            connection.begin()
+
             query = '''delete from user
                     where id = %s ;'''
 
@@ -420,6 +422,7 @@ class UserInfoResource(Resource) :
         except Error as e :
             print(e)
             cursor.close()
+            connection.rollback()
             connection.close()
             return {"result" : "fail", "error" : str(e)}, 500
 

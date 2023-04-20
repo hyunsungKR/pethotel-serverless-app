@@ -81,6 +81,10 @@ class ReservationResource(Resource) :
             ### 4. 커서를 가져온다.
             cursor=connection.cursor()
 
+            # 트랜잭션 시작
+            connection.begin()
+
+
             ### 5. 쿼리문을 커서로 실행한다.
             cursor.execute(query, record)
 
@@ -92,6 +96,9 @@ class ReservationResource(Resource) :
             connection.close()
 
         except Error as e :
+
+            # 트랜잭션 롤백
+            connection.rollback()
 
             print(e)
             cursor.close()
@@ -156,6 +163,9 @@ class CancelReservationResource(Resource) :
             record = (userId, hotelId,petId)
 
             cursor = connection.cursor()
+
+            connection.begin()
+
             cursor.execute(query,record)
 
             connection.commit()
@@ -164,6 +174,9 @@ class CancelReservationResource(Resource) :
             connection.close()
 
         except Error as e:
+
+            # 에러가 발생하면 트랜잭션 롤백
+            connection.rollback()
 
             print(e)
             cursor.close()

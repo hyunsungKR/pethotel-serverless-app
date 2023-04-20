@@ -229,12 +229,20 @@ class ReviewListResource(Resource) :
                     where userId=%s and hotelId = %s;'''
             record = (content,rating,imgUrl,user_id,hotelId)
             cursor = connection.cursor()
+
+            # 트랜잭션 시작
+            connection.begin() 
+
             cursor.execute(query,record)
             connection.commit()
             cursor.close()
             connection.close()
 
         except Error as e :
+
+            # 트랜잭션 롤백
+            connection.rollback()
+
             print(e)
             cursor.close()
             connection.close()
@@ -256,6 +264,8 @@ class ReviewListResource(Resource) :
 
             cursor = connection.cursor()
 
+            connection.begin()
+
             cursor.execute(query,record)
 
             connection.commit()
@@ -263,6 +273,10 @@ class ReviewListResource(Resource) :
             cursor.close()
             connection.close()
         except Error as e :
+
+            # 트랜잭션 롤백
+            connection.rollback()
+            
             print(e)
             cursor.close()
             connection.close()

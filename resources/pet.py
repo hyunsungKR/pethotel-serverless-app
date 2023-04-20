@@ -66,6 +66,7 @@ class PetListResource(Resource) :
             connection.close()
 
         except Error as e :
+            # TEST
             print(e)
             cursor.close()
             connection.close()
